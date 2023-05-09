@@ -1,13 +1,75 @@
-function createRandomMove() {
-  const randomNumber = Math.floor(Math.random() * 3 + 1);
-  if (randomNumber === 1) return "rock";
-  else if (randomNumber === 2) return "paper";
-  else if (randomNumber === 3) return "scrissors";
+function printMessage(msg){
+	var div = document.createElement('div');
+	div.innerHTML = msg;
+	document.getElementById('messages').appendChild(div);
 }
 
-function displayMoves(playersMove, computersMove) {
-  const playersMoveDiv = document.querySelector("#players-move");
-  const computersMoveDiv = document.querySelector("#computers-move");
-  playersMoveDiv.innerHTML = playersMove;
-  computersMoveDiv.innerHTML = computersMove;
+function clearMessages(){
+	document.getElementById('messages').innerHTML = '';
 }
+
+var argMoveId, argPlayerMove, argComputerMove, computerMove, playerMove, randomNumber, playerInput;
+
+/**
+ * Describe this function...
+ */
+function getMoveName(argMoveId) {
+  console.log('wywołano funkcję getMoveName z argumentem: ' + argMoveId);
+  if (argMoveId == 1) {
+    return 'kamień';
+  } else {
+    printMessage('Nie znam ruchu o id ' + argMoveId + '. Zakładam, że chodziło o "kamień".');
+    return 'kamień';
+  }
+}
+
+function getMoveName(argMoveId) {
+  console.log('wywołano funkcję getMoveName z argumentem: ' + argMoveId);
+  if (argMoveId == 2) {
+    return 'papier';
+  } else {
+    printMessage('Nie znam ruchu o id ' + argMoveId + '. Zakładam, że chodziło o "papier".');
+    return 'papier';
+  }
+}
+
+function getMoveName(argMoveId) {
+  console.log('wywołano funkcję getMoveName z argumentem: ' + argMoveId);
+  if (argMoveId == 3) {
+    return 'nożyce';
+  } else {
+    printMessage('Nie znam ruchu o id ' + argMoveId + '. Zakładam, że chodziło o "nożyce".');
+    return 'nożyce';
+  }
+}
+/**
+ * Describe this function...
+ */
+function displayResult(argPlayerMove, argComputerMove) {
+  console.log('wywołano funkcję displayResults z argumentami: ' + argPlayerMove + ', ' + argComputerMove);
+  if (argPlayerMove == 'papier' && argComputerMove == 'kamień') {
+    printMessage('Wygrywasz!');
+  } else {
+    printMessage('Przegrywasz :(');
+  }
+  printMessage('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
+
+if (argPlayerMove == 'kamień' && argComputerMove == 'papier') {
+  printMessage('Wygrywasz!');
+} else {
+  printMessage('Przegrywasz :(');
+}
+printMessage(`Zagrałem ${argComputerMove}, a Ty ${argPlayerMove}`);
+
+
+
+
+playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
+console.log('wybór ruchu gracza to: ' + playerInput);
+playerMove = getMoveName(playerInput);
+console.log('ruch gracza to: ' + playerMove);
+randomNumber = Math.floor(Math.random() * 3 + 1);
+console.log('wylosowana liczba to: ' + randomNumber);
+computerMove = getMoveName(randomNumber);
+console.log('ruch komputera to: ' + computerMove);
+displayResult(playerMove, computerMove);
